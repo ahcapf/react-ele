@@ -1,0 +1,42 @@
+.ant-carousel .slick-slide {
+  overflow: hidden;
+  /* background-color: #00f; */
+}
+
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+
+.ant-carousel .slick-dots li.slick-active button{
+  width:6px;
+  height:6px;
+  background-color: #00f;
+  opacity: .8;
+}
+.ant-carousel .slick-dots li button{
+  width:6px;
+  height:6px;
+  border-radius: 50%;
+  background-color: #000;
+  opacity: .2;
+}
+.navList{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.navItem{
+  width:25%;
+  padding: 10px 15px 0;
+  font-size: 12px;
+  text-align: center;
+}
+.navItem img{
+  width:100%;
+  height:40px;
+}
+.navItem p{
+  height: 24px;
+  line-height: 24px;
+  margin-block-end:0;
+}

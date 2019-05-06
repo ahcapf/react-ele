@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from './component/header.js'
 import Nav from './component/nav.js'
+import '../../style/homePage.css'
 
 export default class HomePage extends Component{
   constructor(){
