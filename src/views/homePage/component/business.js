@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 
-export class Business extends Component{
-  constructor(){
+export default class Business extends Component {
+  constructor() {
     super()
   }
-  render(){
-    return(
+  render() {
+    return (
       <div className="business">
-        推荐商家
+        <div className="title">推荐商家</div>
+        {/* 主体 */}
+        <div className="wrapper" />
+        <div className="businessItem" />
       </div>
     )
   }
