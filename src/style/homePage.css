@@ -69,4 +69,13 @@
 .business .businessItem {
   padding: 10px;
   border-bottom: 1px solid #ccc;
+  overflow: hidden;
+}
+.business .businessItem .businessPic{
+  width: 55px;
+  height: 55px;
+  float: left;
+}
+.business .businessItem .businessItemInfo{
+  float: right;
 }

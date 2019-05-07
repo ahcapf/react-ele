@@ -36,10 +36,12 @@ export default class Nav extends Component{
               if(index < 8){
                 return (
                   <li className="navItem" key={ item.id}>
-                    <img src={`https://fuss10.elemecdn.com${item.image_url}`}/>
+                    <img src={`https://fuss10.elemecdn.com${item.image_url}`} alt=""/>
                     <p>{item.title}</p>
                   </li>
                 )
+              }else{
+                return null
               }
             })}
           </ul>
@@ -50,10 +52,12 @@ export default class Nav extends Component{
               if(index >= 8){
                 return (
                   <li className="navItem" key={ item.id}>
-                    <img src={`https://fuss10.elemecdn.com${item.image_url}`}/>
+                    <img src={`https://fuss10.elemecdn.com${item.image_url}`} alt=""/>
                     <p>{item.title}</p>
                   </li>
                 )
+              }else{
+                return null
               }
             })}
           </ul>
