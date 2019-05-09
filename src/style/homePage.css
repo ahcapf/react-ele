@@ -75,7 +75,25 @@
   width: 55px;
   height: 55px;
   float: left;
+  margin-right:10px;
 }
 .business .businessItem .businessItemInfo{
-  float: right;
+  float: left;
+}
+.businessItemInfo .shopIcon{
+  padding:0 3px;
+  background-color: yellow;
+  margin-right:5px;
+}
+.businessItemInfo .ant-rate{
+  font-size: 10px;
+}
+.businessItemInfo .score{
+  margin:5px;
+}
+.footer{
+  position: fixed;
+  bottom:0;
+  left:0;
+  background-color: #fff;
 }

@@ -1,56 +1,43 @@
 import React, { Component } from 'react'
-
-//定位数据获取成功响应
-function  onSuccess(position){
-  alert('纬度: '          + position.coords.latitude          + '\n' +
-  '经度: '         + position.coords.longitude         + '\n' +
-  '海拔: '          + position.coords.altitude          + '\n' +
-  '水平精度: '          + position.coords.accuracy          + '\n' +
-  '垂直精度: ' + position.coords.altitudeAccura)
-}
-//定位数据获取失败响应
-function onError(error) {
-  switch(error.code)
-  {
-  case error.PERMISSION_DENIED:
-  alert("您拒绝对获取地理位置的请求");
-  break;
-  case error.POSITION_UNAVAILABLE:
-  alert("位置信息是不可用的");
-  break;
-  case error.TIMEOUT:
-  alert("请求您的地理位置超时");
-  break;
-  case error.UNKNOWN_ERROR:
-  alert("未知错误");
-  break;
-  }
-}
+import { Rate } from 'antd'
 
 export default class Business extends Component {
   constructor() {
     super()
-    this.state={}
-  }
-
-  //获取经纬度
-  getLocation(){
-    
-    let longitude
-    let latitude
-    if(navigator.geolocation){
-      console.log("开始获取位置信息11")
-      navigator.geolocation.getCurrentPosition(onSuccess , onError)
-    }else{
-      alert("您的浏览器不支持使用HTML 5来获取地理位置服务");
+    this.state={
+      shopList:[]
     }
-    console.log(111, longitude, latitude)
-    
+    this.getGeolocation = this.getGeolocation.bind(this)
+    this.getShop = this.getShop.bind(this)
   }
 
+  // 获取经纬度
+  getGeolocation(){
+    fetch('https://elm.cangdu.org/v1/cities?type=guess')
+    .then(res => res.json())
+    .then(data => {
+      const position = {
+        latitude:data.latitude,
+        longitude:data.longitude
+      }
+      this.getShop(position)
+    })
+  }
+
+  // 获取商铺列表
+  getShop(position){
+    fetch(`https://elm.cangdu.org/shopping/restaurants?latitude=${position.latitude}&longitude=${position.longitude}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log("商家列表", data)
+      this.setState({
+        shopList:data
+      })
+    })
+  }
   
   componentDidMount(){
-    this.getLocation()
+    this.getGeolocation()
   }
   render() {
     return (
@@ -58,11 +45,28 @@ export default class Business extends Component {
         <div className="title">推荐商家</div>
         {/* 主体 */}
         <div className="wrapper" >
-          <div className="businessItem" >
-            <img className="businessPic" src="" alt="" />
-            <div className="businessItemInfo" >
-            </div>
-          </div>
+          {this.state.shopList.map(item => {
+            return(
+              <div className="businessItem" key={item.id}>
+                <img className="businessPic" src={`http://elm.cangdu.org/img/${item.image_path}`} alt="" />
+                <div className="businessItemInfo" >
+                  <div className="shopTitle">
+                    <span className="shopIcon">品牌</span>
+                    <span>{item.name}</span>
+                  </div>
+                  <div>
+                    <Rate disabled defaultValue={2} />
+                    <span className="score">4.8</span>
+                    <span>月售1319单</span>
+                  </div>
+                  <div>
+                    ￥{item.float_minimum_order_amount}起送&nbsp;|&nbsp;{item.piecewise_agent_fee.tips}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+          
         </div>
       </div>
     )

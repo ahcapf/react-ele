@@ -11,7 +11,7 @@ export default class Header extends Component{
   }
   render(){
     return(
-      <div className="header" style={{padding:'0 15px',position:'fixed',left:'0',top:'0',width:'100%'}}>
+      <div className="header" style={{padding:'0 15px',position:'fixed',left:'0',top:'0',width:'100%',backgroundColor:'white',zIndex:'999'}}>
         <div className="location" style={{padding:"12px 0",fontSize:'12px',overflow:'hidden'}}>
           <div className="left" style={{float:'left'}}>
             {Location()}
